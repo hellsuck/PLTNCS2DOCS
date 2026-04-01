@@ -33,7 +33,7 @@ This table contains offsets relevant to `client.dll` memory locations.
 </Accordion>
 
 ```lua
-local client_base = 0x7FFD12340000 -- Example base address
+local client_base = memory.get_module_base("client.dll")
 local local_player_pawn = memory.read_ptr(client_base + offsets.client_dll.dwLocalPlayerPawn)
 ```
 

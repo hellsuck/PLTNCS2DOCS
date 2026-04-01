@@ -78,3 +78,21 @@ if memory.is_valid(pawn_address) then
     local health = memory.read_i32(pawn_address + 0x32C)
 end
 ```
+
+---
+
+### `memory.get_module_base`
+Returns the base address of a loaded module.
+
+<Property name="name" type="string" required>
+  The name of the module (e.g., `'client.dll'`).
+</Property>
+
+**Returns**: `uintptr_t` (the base address of the module)
+
+```lua
+local client_base = memory.get_module_base("client.dll")
+if client_base ~= 0 then
+    print("client.dll is loaded at: " .. tostring(client_base))
+end
+```
