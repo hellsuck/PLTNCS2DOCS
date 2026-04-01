@@ -31,12 +31,15 @@ Registers a function to be called on specific events.
 
 ```lua
 register_callback("player_hurt", function(event)
-    print("Someone got hurt!")
+    -- event is a CGameEvent object
+    local victim = event:get_pawn()
+    local damage = event:get_int("dmg_health")
+    print("Victim took " .. damage .. " damage!")
 end)
 
 register_callback("create_move", function(cmd)
     -- cmd is a CUserCmd object
-    cmd:set_sub_tick_angle(Vector3.new(0, 0, 0))
+    cmd:set_sub_tick_angle(Vector3.new(89, 180, 0))
 end)
 ```
 

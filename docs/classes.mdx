@@ -118,4 +118,89 @@ end)
 
 <Warning>
   Writing **illogical or impossible** values and very fast changes can trigger **neural anticheat detection**. Always ensure your logic is consistent with human-like input if used for aim-assist features.
-</Warning>
+</Accordion>
+
+---
+
+## `CGameEvent`
+
+The `CGameEvent` class represents a game event (e.g., player hurt, weapon fired). It provides methods to retrieve event-specific fields.
+
+<Accordion title="Methods" defaultOpen>
+  <Property name="get_int" type="function" required>
+    <Property name="name" type="string" required>
+      The field name.
+    </Property>
+    Returns an integer field by name.
+  </Property>
+
+  ---
+
+  <Property name="get_float" type="function" required>
+    <Property name="name" type="string" required>
+      The field name.
+    </Property>
+    Returns a float field by name.
+  </Property>
+
+  ---
+
+  <Property name="get_string" type="function" required>
+    <Property name="name" type="string" required>
+      The field name.
+    </Property>
+    Returns a string field by name.
+  </Property>
+
+  ---
+
+  <Property name="get_bool" type="function" required>
+    <Property name="name" type="string" required>
+      The field name.
+    </Property>
+    Returns a bool field by name.
+  </Property>
+
+  ---
+
+  <Property name="get_controller" type="function" required>
+    <Property name="field_name" type="string" required>
+      The field name (e.g., `'userid'`, `'attacker'`).
+    </Property>
+    Returns the player controller associated with a field name.
+  </Property>
+
+  ---
+
+  <Property name="get_pawn" type="function" required>
+    <Property name="field_name" type="string" required>
+      The field name (e.g., `'userid'`, `'attacker'`).
+    </Property>
+    Returns the player pawn associated with a field name.
+  </Property>
+
+  ---
+
+  <Property name="get_player_index" type="function" required>
+    <Property name="field_name" type="string" required>
+      The field name.
+    </Property>
+    Returns the player index for a given field name.
+  </Property>
+
+  ---
+
+  <Property name="get_damage" type="function" required>
+    Convenience method to retrieve the damage value from the current event (e.g., `'dmg_health'` in `'player_hurt'`).
+  </Property>
+</Accordion>
+
+Usage:
+```lua
+register_callback("player_hurt", function(event)
+    local victim = event:get_pawn("userid")
+    local attacker = event:get_pawn("attacker")
+    local damage = event:get_damage()
+    print("Health remaining: " .. event:get_int("health"))
+end)
+```
