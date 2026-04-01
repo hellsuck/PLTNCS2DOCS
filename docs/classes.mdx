@@ -38,7 +38,9 @@ The `ConVar` class represents a game console variable. Objects of this class are
   </Property>
 </Accordion>
 
-
+<Warning>
+  Be careful when writing to certain ConVars as they can negatively affect your **trust factor** and overall game experience.
+</Warning>
 
 ```lua
 local sensitivity = get_cvar("sensitivity")
