@@ -38,8 +38,9 @@ The `ConVar` class represents a game console variable. Objects of this class are
   </Property>
 </Accordion>
 
-> [!WARNING]
-> Be careful when writing to certain ConVars as they can negatively affect your **trust factor** and overall game experience.
+<Warning>
+  Be careful when writing to certain ConVars as they can negatively affect your **trust factor** and overall game experience.
+</Warning>
 
 ```lua
 local sensitivity = get_cvar("sensitivity")
@@ -115,5 +116,6 @@ register_callback("create_move", function(cmd)
 end)
 ```
 
-> [!WARNING]
-> Writing **illogical or impossible** values and very fast changes can trigger **neural anticheat detection**. Always ensure your logic is consistent with human-like input if used for aim-assist features.
+<Warning>
+  Writing **illogical or impossible** values and very fast changes can trigger **neural anticheat detection**. Always ensure your logic is consistent with human-like input if used for aim-assist features.
+</Warning>
