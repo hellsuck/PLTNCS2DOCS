@@ -1,0 +1,45 @@
+{
+  "name": "Plutonium CS2 Docs",
+  "description": "API Documentation for Plutonium CS2 Lua scripting",
+  "theme": "slate",
+  "sidebar": [
+    {
+      "group": "Overview",
+      "pages": [
+        {
+          "title": "Introduction",
+          "href": "/"
+        }
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "title": "Globals",
+          "href": "/globals"
+        },
+        {
+          "title": "Entity",
+          "href": "/entity"
+        },
+        {
+          "title": "Memory",
+          "href": "/memory"
+        },
+        {
+          "title": "Draw",
+          "href": "/draw"
+        },
+        {
+          "title": "Classes",
+          "href": "/classes"
+        },
+        {
+          "title": "Offsets",
+          "href": "/offsets"
+        }
+      ]
+    }
+  ]
+}
