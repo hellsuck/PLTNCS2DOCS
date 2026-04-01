@@ -4,23 +4,56 @@ The Plutonium Lua environment provides Several global functions that are availab
 
 ---
 
-### `print(text)`
+### `print`
 Prints text to the cheat console. Useful for debugging and logging information.
-- **Parameters**: 
-    - `text` (`string`): The text to print.
+
+<Property name="text" type="string" required>
+  The text to print to the console.
+</Property>
+
+```lua
+print("Hello from Plutonium!")
+print("Local player pointer: " .. tostring(entity.get_local_player()))
+```
 
 ---
 
-### `register_callback(event_name, func)`
+### `register_callback`
 Registers a function to be called on specific events.
-- **Parameters**: 
-    - `event_name` (`string`): The name of the event (e.g., `'player_hurt'`, `'create_move'`, `'panorama_event'`, `'module_state'`).
-    - `func` (`function`): The callback function to execute when the event occurs.
+
+<Property name="event_name" type="string" required>
+  The name of the event to listen for (e.g., `'player_hurt'`, `'create_move'`, `'panorama_event'`, `'module_state'`).
+</Property>
+
+<Property name="func" type="function" required>
+  The callback function to execute when the event occurs.
+</Property>
+
+```lua
+register_callback("player_hurt", function(event)
+    print("Someone got hurt!")
+end)
+
+register_callback("create_move", function(cmd)
+    -- cmd is a CUserCmd object
+    cmd:set_sub_tick_angle(Vector3.new(0, 0, 0))
+end)
+```
 
 ---
 
-### `get_cvar(name)`
+### `get_cvar`
 Finds and returns a Console Variable (CVar) object.
-- **Parameters**: 
-    - `name` (`string`): The name of the CVar.
-- **Returns**: `ConVar` object (see [Classes](/classes#convar)).
+
+<Property name="name" type="string" required>
+  The name of the CVar to retrieve.
+</Property>
+
+**Returns**: `ConVar` object (see [Classes](/classes))
+
+```lua
+local sensitivity = get_cvar("sensitivity")
+if sensitivity then
+    print("Current sensitivity: " .. sensitivity:get_float())
+end
+```

@@ -4,24 +4,73 @@ The `draw` table provides primitive rendering functions for creating overlays an
 
 ---
 
-### `draw.line(x1, y1, x2, y2, col, thick)`
+### `draw.line`
 Draws a line on the screen.
-- **Parameters**: 
-    - `x1, y1` (`float`): Starting coordinates.
-    - `x2, y2` (`float`): Ending coordinates.
-    - `col` (`color_t`): Color object.
-    - `thick` (`float`): Line thickness.
+
+<Property name="x1" type="float" required>
+  The X coordinate of the starting point.
+</Property>
+
+<Property name="y1" type="float" required>
+  The Y coordinate of the starting point.
+</Property>
+
+<Property name="x2" type="float" required>
+  The X coordinate of the ending point.
+</Property>
+
+<Property name="y2" type="float" required>
+  The Y coordinate of the ending point.
+</Property>
+
+<Property name="col" type="color_t" required>
+  The color object `{r, g, b, a}`.
+</Property>
+
+<Property name="thick" type="float" required>
+  The thickness of the line.
+</Property>
+
+```lua
+draw.line(100, 100, 200, 200, {255, 255, 255, 255}, 1.0)
+```
 
 ---
 
-### `draw.rect(x, y, w, h, col, round, thick)`
+### `draw.rect`
 Draws a hollow rectangle.
-- **Parameters**: 
-    - `x, y` (`float`): Top-left coordinates.
-    - `w, h` (`float`): Width and height.
-    - `col` (`color_t`): Color object.
-    - `round` (`float`): Corner rounding radius.
-    - `thick` (`float`): Line thickness.
+
+<Property name="x" type="float" required>
+  The X coordinate of the top-left corner.
+</Property>
+
+<Property name="y" type="float" required>
+  The Y coordinate of the top-left corner.
+</Property>
+
+<Property name="w" type="float" required>
+  The width of the rectangle.
+</Property>
+
+<Property name="h" type="float" required>
+  The height of the rectangle.
+</Property>
+
+<Property name="col" type="color_t" required>
+  The color object `{r, g, b, a}`.
+</Property>
+
+<Property name="round" type="float" required>
+  The rounding radius of the corners.
+</Property>
+
+<Property name="thick" type="float" required>
+  The thickness of the rectangle border.
+</Property>
+
+```lua
+draw.rect(50, 50, 100, 100, {255, 0, 0, 255}, 5.0, 2.0)
+```
 
 ---
 
@@ -65,6 +114,10 @@ Draws a filled circle.
     - `col` (`color_t`): Color object.
     - `segments` (`int`): Number of segments for the circle.
 
+```lua
+draw.circle_filled(400, 400, 20, {0, 255, 0, 255}, 32)
+```
+
 ---
 
 ### `draw.triangle(x1, y1, x2, y2, x3, y3, col, thick)`
@@ -92,6 +145,10 @@ Draws a standard 2D box.
     - `col` (`color_t`): Color object.
     - `thick` (`float`): Line thickness.
 
+```lua
+draw.box(300, 300, 50, 100, {0, 0, 255, 255}, 1.5)
+```
+
 ---
 
 ### `draw.box_corner(x, y, w, h, col, thick, length)`
@@ -102,11 +159,33 @@ Draws a 2D corner-style box. Useful for ESP visuals.
 
 ---
 
-### `draw.text(x, y, col, txt, outline, center)`
+### `draw.text`
 Draws text on the screen.
-- **Parameters**: 
-    - `x, y` (`float`): Starting coordinates.
-    - `col` (`color_t`): Color object.
-    - `txt` (`string`): The text to draw.
-    - `outline` (`bool`): If `true`, adds a black outline.
-    - `center` (`bool`): If `true`, centers the text.
+
+<Property name="x" type="float" required>
+  The X coordinate for the text placement.
+</Property>
+
+<Property name="y" type="float" required>
+  The Y coordinate for the text placement.
+</Property>
+
+<Property name="col" type="color_t" required>
+  The color object `{r, g, b, a}`.
+</Property>
+
+<Property name="txt" type="string" required>
+  The string to display.
+</Property>
+
+<Property name="outline" type="bool" required>
+  If true, a black outline is drawn around the text.
+</Property>
+
+<Property name="center" type="bool" required>
+  If true, the text is centered horizontally.
+</Property>
+
+```lua
+draw.text(960, 540, {255, 255, 255, 255}, "Hello Friend, Maybe I should give you a name", true, true)
+```

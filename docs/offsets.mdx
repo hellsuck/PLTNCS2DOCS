@@ -8,12 +8,34 @@ The `offsets` table contains pre-defined memory offsets for Counter-Strike 2. Th
 
 This table contains offsets relevant to `client.dll` memory locations.
 
-| Offset Name | Type | Description |
-| ----------- | ---- | ----------- |
-| `dwLocalPlayerPawn` | `uintptr_t` | Offset to the local player pawn pointer. |
-| `dwViewAngles` | `uintptr_t` | Offset to the view angles pointer. |
-| `dwEntityList` | `uintptr_t` | Offset to the entity list pointer. |
-| `dwViewMatrix` | `uintptr_t` | Offset to the view matrix pointer. |
+<Accordion title="Client Offsets" defaultOpen>
+  <Property name="dwLocalPlayerPawn" type="uintptr_t" required>
+    Offset to the local player pawn pointer.
+  </Property>
+
+  ---
+
+  <Property name="dwViewAngles" type="uintptr_t" required>
+    Offset to the view angles pointer.
+  </Property>
+
+  ---
+
+  <Property name="dwEntityList" type="uintptr_t" required>
+    Offset to the entity list pointer.
+  </Property>
+
+  ---
+
+  <Property name="dwViewMatrix" type="uintptr_t" required>
+    Offset to the view matrix pointer.
+  </Property>
+</Accordion>
+
+```lua
+local client_base = 0x7FFD12340000 -- Example base address
+local local_player_pawn = memory.read_ptr(client_base + offsets.client_dll.dwLocalPlayerPawn)
+```
 
 ---
 

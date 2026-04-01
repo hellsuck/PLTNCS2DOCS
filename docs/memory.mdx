@@ -4,37 +4,77 @@ The `memory` table provides functions for low-level memory access and validation
 
 ---
 
-### `memory.read_i32(addr)`
+### `memory.read_i32`
 Reads a 32-bit signed integer from the given address.
-- **Parameters**: 
-    - `addr` (`uintptr_t`): The address to read from.
+
+<Property name="addr" type="uintptr_t" required>
+  The memory address to read from.
+</Property>
+
+**Returns**: `int`
+
+```lua
+local health = memory.read_i32(pawn_address + 0x32C)
+```
 
 ---
 
-### `memory.read_u32(addr)`
+### `memory.read_u32`
 Reads a 32-bit unsigned integer from the given address.
-- **Parameters**: 
-    - `addr` (`uintptr_t`): The address to read from.
+
+<Property name="addr" type="uintptr_t" required>
+  The memory address to read from.
+</Property>
+
+**Returns**: `uint`
+
+```lua
+local flags = memory.read_u32(pawn_address + 0x3C8)
+```
 
 ---
 
-### `memory.read_f32(addr)`
+### `memory.read_f32`
 Reads a 32-bit float from the given address.
-- **Parameters**: 
-    - `addr` (`uintptr_t`): The address to read from.
+
+<Property name="addr" type="uintptr_t" required>
+  The memory address to read from.
+</Property>
+
+**Returns**: `float`
+
+```lua
+local flash_duration = memory.read_f32(pawn_address + 0x1468)
+```
 
 ---
 
-### `memory.read_ptr(addr)`
+### `memory.read_ptr`
 Reads a pointer (uint64) from the given address.
-- **Parameters**: 
-    - `addr` (`uintptr_t`): The address to read from.
-- **Returns**: `uintptr_t`.
+
+<Property name="addr" type="uintptr_t" required>
+  The memory address to read from.
+</Property>
+
+**Returns**: `uintptr_t`
+
+```lua
+local node = memory.read_ptr(pawn_address + 0x10)
+```
 
 ---
 
-### `memory.is_valid(addr)`
+### `memory.is_valid`
 Checks if a memory address is valid and accessible.
-- **Parameters**: 
-    - `addr` (`uintptr_t`): The address to validate.
-- **Returns**: `bool`.
+
+<Property name="addr" type="uintptr_t" required>
+  The memory address to validate.
+</Property>
+
+**Returns**: `bool`
+
+```lua
+if memory.is_valid(pawn_address) then
+    local health = memory.read_i32(pawn_address + 0x32C)
+end
+```

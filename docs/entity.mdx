@@ -4,8 +4,17 @@ The `entity` table provides functions for interacting with game entities in Coun
 
 ---
 
-### `entity.get_local_player()`
-Returns the local player controller pointer (`uintptr_t`).
+### `entity.get_local_player`
+Returns the local player controller pointer.
+
+**Returns**: `uintptr_t`
+
+```lua
+local local_player = entity.get_local_player()
+if local_player ~= nil then
+    print("Local player pointer: " .. tostring(local_player))
+end
+```
 
 ---
 
@@ -14,10 +23,18 @@ Returns the local player pawn pointer (`uintptr_t`).
 
 ---
 
-### `entity.get_player_controller(index)`
+### `entity.get_player_controller`
 Returns a player controller pointer by index.
-- **Parameters**: 
-    - `index` (`int`): The player index.
+
+<Property name="index" type="int" required>
+  The player index (starting from 1).
+</Property>
+
+**Returns**: `uintptr_t`
+
+```lua
+local player_one = entity.get_player_controller(1)
+```
 
 ---
 
@@ -28,10 +45,23 @@ Returns the pawn associated with a player controller.
 
 ---
 
-### `entity.get_team(ent)`
+### `entity.get_team`
 Returns the entity's team ID.
-- **Parameters**: 
-    - `ent` (`uintptr_t`): The entity pointer.
+
+<Property name="ent" type="uintptr_t" required>
+  The entity pointer (player pawn or controller).
+</Property>
+
+**Returns**: `int` (2 for T, 3 for CT, 1 for Spectator)
+
+```lua
+local team = entity.get_team(entity.get_local_player_pawn())
+if team == 2 then
+    print("You are on Terrorists")
+elseif team == 3 then
+    print("You are on Counter-Terrorists")
+end
+```
 
 ---
 
@@ -56,10 +86,20 @@ Returns the entity's absolute eye position as a `Vector3` object.
 
 ---
 
-### `entity.get_health(ent)`
+### `entity.get_health`
 Returns the entity's current health.
-- **Parameters**: 
-    - `ent` (`uintptr_t`): The entity pointer.
+
+<Property name="ent" type="uintptr_t" required>
+  The entity pointer.
+</Property>
+
+**Returns**: `int`
+
+```lua
+local lp_pawn = entity.get_local_player_pawn()
+local health = entity.get_health(lp_pawn)
+print("My health: " .. health)
+```
 
 ---
 
@@ -89,12 +129,24 @@ Returns a table containing all active entity pointers.
 
 ---
 
-### `entity.get_by_class(className)`
+### `entity.get_by_class`
 Returns a table of entities matching a Network Name.
-- **Parameters**: 
-    - `className` (`string`): The network class name.
+
+<Property name="className" type="string" required>
+  The network class name (e.g., `'C_CSPlayerPawn'`).
+</Property>
+
+**Returns**: `table` of `uintptr_t`
 
 ---
 
 ### `entity.get_players()`
 Returns a table of all valid player controller entity pointers.
+
+```lua
+local players = entity.get_players()
+for i, player in ipairs(players) do
+    local health = entity.get_health(player)
+    print("Player index " .. i .. " has " .. health .. " HP")
+end
+```
